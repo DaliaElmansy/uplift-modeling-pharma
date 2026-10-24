@@ -117,6 +117,7 @@ A regression model is then fitted to $`\psi_i`$ to estimate heterogeneous treatm
 
 Because treatment is randomized here, the true propensity is approximately 0.5. In observational applications, propensity estimation and overlap diagnostics become essential.
 
+
 ## Evaluation
 
 Uplift models require treatment-aware evaluation. A classifier can have good predictive accuracy while still ranking incremental treatment effect poorly.

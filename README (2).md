@@ -104,16 +104,16 @@ $$
 
 A doubly robust pseudo-outcome combines outcome regression with the treatment propensity:
 
-$$
+```math
 \psi_i =
 \hat{\mu}_1(X_i)-\hat{\mu}_0(X_i)
 +
 \frac{T_i(Y_i-\hat{\mu}_1(X_i))}{\hat e(X_i)}
 -
 \frac{(1-T_i)(Y_i-\hat{\mu}_0(X_i))}{1-\hat e(X_i)}
-$$
+```
 
-A regression model is then fitted to $\psi_i$ to estimate heterogeneous treatment effects.
+A regression model is then fitted to $`\psi_i`$ to estimate heterogeneous treatment effects.
 
 Because treatment is randomized here, the true propensity is approximately 0.5. In observational applications, propensity estimation and overlap diagnostics become essential.
 

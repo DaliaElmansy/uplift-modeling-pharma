@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the repository."
+title: "Uplift Modeling for HCP Educational Outreach"
+type: software
+authors:
+  - family-names: "Elmansy"
+    given-names: "Dalia"
+version: "1.0.0"
+date-released: "2026-10-22"
+license: "MIT"

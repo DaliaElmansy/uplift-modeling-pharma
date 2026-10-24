@@ -16,15 +16,15 @@ An uplift model asks:
 
 The goal is to estimate the conditional average treatment effect (CATE):
 
-\[
-\tau(x) = E[Y(1)-Y(0)\mid X=x]
-\]
+$$
+\tau(x) = \mathbb{E}[Y(1)-Y(0)\mid X=x]
+$$
 
 where:
 
-- \(Y(1)\) is the potential outcome under treatment,
-- \(Y(0)\) is the potential outcome without treatment,
-- \(X\) is the observed feature vector.
+- $Y(1)$ is the potential outcome under treatment,
+- $Y(0)$ is the potential outcome without treatment,
+- $X$ is the observed feature vector.
 
 This distinction matters because a high-response HCP may have engaged even without outreach. Uplift modeling focuses instead on **incremental impact**.
 
@@ -32,15 +32,15 @@ This distinction matters because a high-response HCP may have engaged even witho
 
 Traditional response modeling estimates:
 
-\[
+$$
 P(Y=1 \mid X)
-\]
+$$
 
 Uplift modeling estimates:
 
-\[
+$$
 P(Y=1 \mid T=1,X)-P(Y=1 \mid T=0,X)
-\]
+$$
 
 This enables targeting based on expected incremental response rather than baseline propensity.
 
@@ -68,9 +68,9 @@ Treatment represents an educational outreach intervention and is randomized 50/5
 
 The simulation introduces heterogeneous treatment effects on the **log-odds scale**, then converts them to the probability scale:
 
-\[
+$$
 \tau_{\text{true}}(x)=P(Y=1\mid T=1,X=x)-P(Y=1\mid T=0,X=x)
-\]
+$$
 
 This makes it possible to compare estimated uplift with the known simulated individual treatment effect.
 
@@ -80,7 +80,7 @@ The project compares four approaches.
 
 ### 1. Conventional Response Model
 
-A standard classifier predicts outcome probability from \(X\) while ignoring treatment assignment.
+A standard classifier predicts outcome probability from $X$ while ignoring treatment assignment.
 
 This is useful as a baseline because it illustrates a common targeting mistake: ranking individuals by **likelihood of response** rather than by **incremental effect of treatment**.
 
@@ -88,32 +88,32 @@ This is useful as a baseline because it illustrates a common targeting mistake: 
 
 Separate outcome models are fitted for treated and control observations:
 
-\[
+$$
 \hat{\tau}(x)=\hat{\mu}_1(x)-\hat{\mu}_0(x)
-\]
+$$
 
 ### 3. S-Learner
 
 A single outcome model is fitted with treatment as an additional feature:
 
-\[
+$$
 \hat{\tau}(x)=\hat{\mu}(x,T=1)-\hat{\mu}(x,T=0)
-\]
+$$
 
 ### 4. Doubly Robust Learner
 
 A doubly robust pseudo-outcome combines outcome regression with the treatment propensity:
 
-\[
+$$
 \psi_i =
 \hat{\mu}_1(X_i)-\hat{\mu}_0(X_i)
 +
 \frac{T_i(Y_i-\hat{\mu}_1(X_i))}{\hat e(X_i)}
 -
 \frac{(1-T_i)(Y_i-\hat{\mu}_0(X_i))}{1-\hat e(X_i)}
-\]
+$$
 
-A regression model is then fitted to \(\psi_i\) to estimate heterogeneous treatment effects.
+A regression model is then fitted to $\psi_i$ to estimate heterogeneous treatment effects.
 
 Because treatment is randomized here, the true propensity is approximately 0.5. In observational applications, propensity estimation and overlap diagnostics become essential.
 
@@ -154,7 +154,7 @@ Observed uplift by decile is **not expected to be perfectly monotonic**. Each de
 
 ## Running the Project
 
-Install dependencies:
+From the repository root, install dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -177,14 +177,11 @@ figures/uplift_by_decile.png
 figures/targeting_comparison.png
 ```
 
-## Repository Structure
+## Module Structure
 
 ```text
 .
 ├── README.md
-├── LICENSE
-├── .gitignore
-├── requirements.txt
 ├── src/
 │   └── uplift_modeling.py
 ├── notebooks/
